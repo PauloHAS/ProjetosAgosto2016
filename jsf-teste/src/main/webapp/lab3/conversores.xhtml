@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<head>
+</head>
+<body>
+	<H3>Conversores Padrão</H3>
+
+	<form id="formPadrao">
+		<h:panelGrid collumns="3" cellspadding="10">
+			<h:outputLabel value="Informe a data de nascimento" />
+			<h:inputText id="nascimento">
+				<f:convertDateTime type="date" pattern="dd/MM/yyyy"
+					time-zone="America/Sao Paulo" />
+			</h:inputText>
+			<h:message for="nascimento" style="color:red" />
+
+			<h:outputLabel value="Informe seu peso" />
+			<h:inputText value="peso" style="color:red" />
+			<h:message for="peso" style="color:red" />
+
+		</h:panelGrid>
+
+		<h:commandButton value="Utilizar converter Padrão" />
+	</form>
+
+	<hr />
+
+	<h3>Conversores Personalizados</h3>
+	<h:form id="formCustom">
+		<h:panelGrid>
+			<h:outputLabel value="Informe a Temperatura em Celsuis: " />
+			<h:inputText value="Informe a temperatura em Celsius">
+				<f:converter convertId="celsiusToFahrenheitConverter" />
+			</h:inputText>
+			<h:message for="celsius" style="color:red"/>
+		</h:panelGrid>
+		<h:commandButton value="Calcular utilizando converter customizado" >
+		<f:ajax execute="formCustom" render="formCustom"/>
+		</h:commandButton>
+	</h:form>
+
+</body>
+</html>
