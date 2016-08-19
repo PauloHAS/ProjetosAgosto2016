@@ -9,7 +9,7 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class HelloWorldBean implements Serializable {
 
-	private static final long serialVersionUID = 2556071552284556911L;
+	private static final long serialVersionUID = 137807007075370472L;
 	private String nome;
 
 	public String getNome() {
