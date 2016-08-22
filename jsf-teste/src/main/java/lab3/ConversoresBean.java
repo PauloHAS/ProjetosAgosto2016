@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-@ManagedBean
+@ManagedBean(name="conversoresBean")
 @ViewScoped
 public class ConversoresBean implements Serializable {
 

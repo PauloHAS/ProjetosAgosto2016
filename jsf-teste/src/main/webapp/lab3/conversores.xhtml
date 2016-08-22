@@ -1,13 +1,15 @@
-<!DOCTYPE html>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <head>
 </head>
 <body>
-	<H3>Conversores Padrão</H3>
+	<h3>Conversores Padrão</h3>
 
 	<form id="formPadrao">
 		<h:panelGrid collumns="3" cellspadding="10">
@@ -19,11 +21,13 @@
 			<h:message for="nascimento" style="color:red" />
 
 			<h:outputLabel value="Informe seu peso" />
-			<h:inputText value="peso" style="color:red" />
+			<h:inputText id="peso">
+				<f:convertNumber integerOnly="true" />
+			</h:inputText>
+
 			<h:message for="peso" style="color:red" />
 
 		</h:panelGrid>
-
 		<h:commandButton value="Utilizar converter Padrão" />
 	</form>
 
@@ -31,15 +35,18 @@
 
 	<h3>Conversores Personalizados</h3>
 	<h:form id="formCustom">
-		<h:panelGrid>
+		<h:panelGrid collumns="3" cellpadding="10">
 			<h:outputLabel value="Informe a Temperatura em Celsuis: " />
-			<h:inputText value="Informe a temperatura em Celsius">
+			<h:inputText id="celsius" value="#{conversoresBean.celsiusToFahreinheit}">
 				<f:converter converterId="celsiusTofahrenheitConverter" />
 			</h:inputText>
-			<h:message for="celsius" style="color:red"/>
+			
+			<h:message for="celsius" style="color:red" />
+		
 		</h:panelGrid>
-		<h:commandButton value="Calcular utilizando converter customizado" >
-		<f:ajax execute="formCustom" render="formCustom"/>
+		
+		<h:commandButton value="Calcular utilizando converter customizado">
+			<f:ajax execute="formCustom" render="formCustom" />
 		</h:commandButton>
 	</h:form>
 

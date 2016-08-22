@@ -11,13 +11,13 @@ import javax.faces.convert.FacesConverter;
 public class CelsiusToFahrenheitConverter implements Converter {
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 
-		float result = 0F;
+		Float result = 0F;
 
 		try {
-			float celsius = Float.parseFloat(value);
-
-			result = (celsius * (9 / 5) + 32);
-
+			
+			Float celsius = Float.parseFloat(value);
+			result = (celsius * 9 / 5) + 32;
+			
 		} catch (Exception e) {
 
 			FacesMessage msg = new FacesMessage("Erro na conversão de celsius para fahreinheit",
@@ -30,11 +30,7 @@ public class CelsiusToFahrenheitConverter implements Converter {
 		return result;
 	}
 
-	public String getAsString(FacesContext context, UIComponent component, String value) {
-		return value.toString();
-	}
-
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		return null;
+		return value.toString();
 	}
 }

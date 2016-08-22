@@ -1,11 +1,61 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
 
-<h:head></h:head> 
-<body> 
+<h:head></h:head>
+<body>
 
-</body> 
+	<h3>VALIDADORES PADRÃO</h3>
+	<h:form id="formPadrao">
+		<h:panelGrid columns="3">
+			<h:outputLabel value="Atributo Obrigatorio" />
+			<h:inputText id="attObrigatorio"
+				value="#{validadoresBean.atributoObrigatorio}" required="true" />
+			<h:message for="attObrigatorio" style="color:red" />
+
+			<h:outputLabel value="Informe sua Senha: " />
+			<h:inputSecret id="senha"
+				value="#{validadoresBean.atributoObrigatorio}" required="true">
+				<f:validateLength minimun="5" />
+			</h:inputSecret>
+			<h:message for="senha" style="color:red" />
+		</h:panelGrid>
+
+		<h:commandButton value="Utilizar Validador Padrão" />
+	</h:form>
+	
+	<hr />
+
+	<h3>VALIDADORES PERSONALIZADOS</h3>
+
+	<h:form id="formCustom">
+		<h:panelGrid colums="3">
+			<h:outputLabel value="Entre com um Email Valido: " />
+			<h:inputText id="email" value="#{validadoresBean.email}"
+				required="true">
+				<f:validator validatorId="emailValidator" />
+			</h:inputText>
+			<h:message for="email" style="color:red" />
+		</h:panelGrid>
+
+		<h:commandButton value="Utilizar Validador Customizado" />
+	</h:form>
+	<hr />
+	<h3>Validadores + Conversores</h3>
+	<h:form id="formValidConvert">
+		<h:panelGrid>
+			<h:outputLabel value="Informe a temperatura em celsius" />
+			<h:inputText id="celsius"
+				value="#{conversoresBean.celsiusToFahreinheit}">
+				<f:validateLongRange maximun="100" minimun="-50" />
+				<f:converter converterId="celsiusTofahrenheitConverter"/>
+			</h:inputText>
+		</h:panelGrid>
+		<h:commandButton value="Calcular">
+			<f:ajax execute="formValidConvert" render="formValidConvert"></f:ajax>
+		</h:commandButton>
+	</h:form>
+</body>
 </html>
